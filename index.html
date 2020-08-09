@@ -1,0 +1,344 @@
+
+
+
+<html lang="en">
+  
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Jquery Cdn -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+</head>
+
+<body>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- G1 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:320px;height:50px"
+     data-ad-client="ca-pub-3193355839678558"
+     data-ad-slot="8084067715"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+  <a href="www.google.com">
+    olkala
+  </a>
+  
+  <div class="container">
+    <div id="question-container" class="hide">
+      <div class="bottom-sheet">
+      </div>
+      
+      <div id="question">Question</div>
+      <div class="images">
+        <img src="Youz.jpg" width="120px"
+        height="170px">
+      </div>
+      <div id="answer-buttons" class="btn-grid">
+        <button class="btn">Answer 1</button>
+        <button class="btn">Answer 2</button>
+        <button class="btn">Answer 3</button>
+        <button class="btn">Answer 4</button>
+      </div>
+    </div>
+    <div class="controls">
+      <button id="start-btn" class="start-btn btn">goooo</button>
+      <div class="bottom-sheet">
+        <!-- Bottom sheet content goes he-->
+        <button id="next-btn" class="next-btn btn hide">Next</button>
+        <a href="www.google.com">
+          <button id="starts-btn" class="starts-btn btn hide">hhhhhfdfcv</button>
+        </a>
+      </div>
+    </div>
+  </div>
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      font-family: Gotham Rounded;
+    }
+  
+    :root {
+      --hue-neutral: 200;
+      --hue-wrong: 0;
+      --hue-correct: 145;
+    }
+  
+    body {
+      --hue: var(--hue-neutral);
+      position: relative;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      width: 100vw;
+      height: 100vh;
+      left: -20px;
+      right: 182px;
+      justify-content: center;
+      align-items: center;
+      background-color: hsl(var(--hue), 100%, 20%);
+    }
+  
+    a {
+      color: black;
+      position: relative;
+      top: 270px;
+      left: 140px;
+    }
+  
+    body.correct {
+      --hue: var(--hue-correct);
+    }
+  
+    body.wrong {
+      --hue: var(--hue-wrong);
+    }
+  
+    .bottom-sheet {
+      width: 100%;
+      min-height: 60%;
+      max-height: 80%;
+      height: auto;
+      background-color: white;
+      position: fixed;
+      z-index: 999999999;
+      bottom: 0;
+      margin-bottom: -200%;
+      transition: .5s;
+      -webkit-user-select: none;
+    }
+  
+    .bg {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      top: 0;
+      position: fixed;
+      z-index: 99999999;
+      background-color: rgb(0, 0, 0, 0.3);
+      display: none;
+      -webkit-user-select: none;
+    }
+  
+    .container {
+      height: 800px;
+      max-height: 80%;
+      width: 800px;
+      max-width: 80%;
+      background-color: white;
+      border-radius: 5px;
+      padding: 5px;
+      box-shadow: 0 0 10px 2px;
+    }
+  
+    .btn-grid {
+      display: grid;
+      gap: 10px;
+      margin: 20px 0;
+    }
+  
+    .btn {
+      --hue: var(--hue-neutral);
+      border: 1px solid hsl(var(--hue), 100%, 30%);
+      background-color: hsl(var(--hue), 100%, 50%);
+      border-radius: 5px;
+      padding: 5px 10px;
+      color: white;
+      transform: translateY(1000%);
+      outline: none;
+    }
+  
+    .btn:hover {
+      border-color: black;
+    }
+  
+    .btn.correct {
+      --hue: var(--hue-correct);
+      color: black;
+    }
+  
+    .btn.wrong {
+      --hue: var(--hue-wrong);
+    }
+  
+    .start-btn {
+      font-size: 1.5rem;
+      font-weight: bold;
+      display: block;
+      padding: 5px 10px;
+      transform: translateY(700%);
+    }
+  
+    .images {
+      border: 2px solid #80aab7;
+      position: absolute;
+      transform: translateX(120px);
+    }
+  
+    .starts-btn {
+      font-size: 1.5rem;
+      font-weight: bold;
+      padding: 1px 20px;
+      transform: translateX(134%);
+    }
+  
+    .next-btn {
+      font-size: 1.5rem;
+      font-weight: bold;
+      padding: 10px 20px;
+      transform: translateX(146%);
+    }
+  
+    .controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .hide {
+      display: none;
+    }
+  </style>
+  <script>
+    const startButton = document.getElementById('start-btn')
+    const startssButton = document.getElementById('starts-btn')
+    const nextButton = document.getElementById('next-btn')
+    const questionContainerElement = document.getElementById('question-container')
+    const questionElement = document.getElementById('question')
+    const answerButtonsElement = document.getElementById('answer-buttons')
+    let shuffledQuestions
+    let currentQuestionIndex
+    startButton.addEventListener('click', startGame)
+    nextButton.addEventListener('click', () => {
+      azert()
+      currentQuestionIndex++
+      setNextQuestion()
+    })
+    startssButton.addEventListener('click', () => {
+      youcef()
+      aze()
+    })
+  
+    function startGame() {
+      startButton.classList.add('hide')
+      shuffledQuestions = questions.sort(() => Math.random() - .0)
+      currentQuestionIndex = 0
+      questionContainerElement.classList.remove('hide')
+      setNextQuestion()
+    }
+  
+    function azert() {
+      $(".bg").fadeIn();
+      $(".bottom-sheet").css("margin-bottom", "-200%");
+    }
+  
+    function setNextQuestion() {
+      resetState()
+      showQuestion(shuffledQuestions[currentQuestionIndex])
+    }
+  
+    function aze() {
+      $(".bg").fadeIn();
+      $(".bottom-sheet").css("margin-bottom", "-200%");
+    }
+  
+    function showQuestion(question) {
+      questionElement.innerText = question.question
+      question.answers.forEach(answer => {
+        const button = document.createElement('button')
+        button.innerText = answer.text
+        button.classList.add('btn')
+        if (answer.correct) {
+          button.dataset.correct = answer.correct
+        }
+        button.addEventListener('click', selectAnswer)
+        answerButtonsElement.appendChild(button)
+      })
+    }
+  
+    function resetState() {
+      clearStatusClass(document.body)
+      nextButton.classList.add('hide')
+      while (answerButtonsElement.firstChild) {
+        answerButtonsElement.removeChild(answerButtonsElement.firstChild)
+      }
+    }
+  
+    function selectAnswer(e) {
+      const selectedButton = e.target
+      const correct = selectedButton.dataset.correct
+      setStatusClass(document.body, callsheet(), correct)
+      Array.from(answerButtonsElement.children).forEach(button => {
+        setStatusClass(button, button.dataset.correct)
+      })
+      if (shuffledQuestions.length > currentQuestionIndex + 1) {
+        nextButton.classList.remove('hide')
+      } else {
+        startssButton.innerText = 'tart'
+        startssButton.classList.remove('hide')
+      }
+    }
+  
+    function callsheet() {
+      $(".bg");
+      $(".bottom-sheet").css("margin-bottom", "0%");
+    }
+  
+    function setStatusClass(element, correct) {
+      clearStatusClass(element)
+      if (correct) {
+        element.classList.add('correct')
+      } else {
+        element.classList.add('wrong')
+      }
+    }
+  
+    function clearStatusClass(element) {
+      element.classList.remove('correct')
+      element.classList.remove('wrong')
+    }
+    const questions = [
+      {
+        question: 'What is 2 + 2?',
+        answers: [
+          { text: '4', correct: true },
+          { text: '22', correct: false }
+      ]
+      },
+      {
+        question: 'Who is the best YouTuber?',
+        answers: [
+          { text: 'Web Dev Simplified', correct: true },
+          { text: 'Traversy Media', correct: true },
+          { text: 'Dev Ed', correct: true },
+          { text: 'Fun Fun Function', correct: true }
+      ]
+      },
+      {
+        question: 'Is web development fun?',
+        answers: [
+          { text: 'Kinda', correct: false },
+          { text: 'YES!!!', correct: true },
+          { text: 'Um no', correct: false },
+          { text: 'IDK', correct: false }
+      ]
+      },
+      {
+        question: 'What is 4 * 2?',
+        answers: [
+          { text: '6', correct: false },
+          { text: '8', correct: true }
+      ]
+      }
+      ]
+  </script>
+</body>
+
+</html>
